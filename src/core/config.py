@@ -168,6 +168,18 @@ def get_red_model_advance() -> str:
 def get_openai_api_key() -> str:
     return os.environ.get("OPENAI_API_KEY", "").strip()
 
+def get_openai_base_url() -> str:
+    return os.environ.get(
+        "OPENAI_BASE_URL",
+        "https://api.openai.com/v1",
+    ).strip()
+
+
+def red_openai_client_kwargs() -> dict:
+    return {
+        "api_key": get_openai_api_key() or None,
+        "base_url": get_openai_base_url(),
+    }
 
 def red_openai_client_kwargs() -> dict:
     return {"api_key": get_openai_api_key() or None}
